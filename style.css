@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-family: sans-serif;
+}
+
+h1 {
+  margin: 20px;
+  text-align: center;
+  color: #503e3e;
+  transition: all 20s ease;
+}
+
+h1.fade {
+  color: #4ea6c9;
+}
+
+.container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  width: 50%;
+  position: relative;
+  height: 50px;
+  overflow: hidden; /*hiddens transform: translateX(-100%); of .form label::after*/
+  margin-bottom: 40px;
+}
+
+.form .input {
+  width: 100%;
+  height: 100%;
+  color: #4ea6c9;
+  padding-top: 20px; /*lifts the text down*/
+  border: none;
+  outline: none;
+}
+
+.form .label {
+  position: absolute; /*puts over .form and .input*/
+  bottom: 0px;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* none tells the mouse event to go "through" the element to address the element below.*/
+  border-bottom: 1px solid #503e3e;
+  color: #503e3e;
+  font-weight: 600;
+}
+
+.form label::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: -1px; /*puts over border-bottom of the previous layer*/
+  height: 100%;
+  width: 100%;
+  border-bottom: 3px solid #4ea6c9;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.span-in-label {
+  position: absolute;
+  bottom: 5px;
+  left: 0px;
+  transition: all 0.3s ease;
+}
+
+.form .input:focus + .label .span-in-label,
+.form .input:valid + .label .span-in-label {
+  transform: translateY(-150%);
+  font-style: 14px;
+  color: #4ea6c9;
+}
+
+.form .input:focus + .label::after,
+.form .input:valid + .label::after {
+  transform: translateX(0%);
+}
